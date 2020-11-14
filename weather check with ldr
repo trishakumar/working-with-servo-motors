@@ -1,0 +1,39 @@
+#include <Servo.h>
+int ldr = A0;
+int servoPin = 9;
+int servoPos;
+int val;
+Servo myServo;
+
+void setup() {
+  // put your setup code here, to run once:
+Serial.begin(9600);
+myServo.attach(servoPin);
+pinMode(ldr, INPUT);
+
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+val = analogRead(ldr);
+if(val > 700 && val < 1023)
+{ 
+  servoPos = 180;
+  myServo.write(servoPos);
+}
+
+
+if(val < 300 && val > 0)
+{ 
+  servoPos = 0;
+  myServo.write(servoPos);
+}
+
+
+
+if(val < 700 && val > 300)
+{ 
+  servoPos = 90;
+  myServo.write(servoPos);
+}
+}
